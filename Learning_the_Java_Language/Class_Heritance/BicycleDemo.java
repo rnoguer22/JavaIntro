@@ -1,4 +1,6 @@
-package Learning_the_Java_Language;
+package Learning_the_Java_Language.Class_Heritance;
+
+
 
 class Bicycle {
 
