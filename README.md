@@ -22,6 +22,6 @@ Vemos que se genera un fichero `.class`, el cual contiene las intrucciones corre
 
 Y de esta manera hemos compilado correctamente nuestro aplicación `HelloWorldApp`!
 
-```bash
+```
     Ejecutando Java desde VSCode!!!
 ```
