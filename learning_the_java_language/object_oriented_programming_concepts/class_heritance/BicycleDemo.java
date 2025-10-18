@@ -1,4 +1,4 @@
-package Learning_the_Java_Language.Class_Heritance;
+package learning_the_java_language.object_oriented_programming_concepts.class_heritance;
 
 
 

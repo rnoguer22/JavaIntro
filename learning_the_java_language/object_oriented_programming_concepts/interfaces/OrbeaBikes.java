@@ -1,4 +1,4 @@
-package Learning_the_Java_Language.Interface;
+package learning_the_java_language.object_oriented_programming_concepts.interfaces;
 
 
 
