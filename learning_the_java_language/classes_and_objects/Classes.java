@@ -1,8 +1,19 @@
-package learning_the_java_language.classes_and_objects.classes;
+package learning_the_java_language.classes_and_objects;
+
+
 
 
 
 class Bicycle {
+
+    // Una clase dentro de una clase se conoce como Nested Classes, y funciona exactamente igual
+    // Esto se hace por mantener las clases que unicamente nos sirven para Bicycle, encapsulacion, legibilidad y mantenimiento de codigo, etc.
+    class NestedWheels {
+        private int numberWheels = 2;
+        public int getNumberWheels() {
+            return numberWheels;
+        }
+    }
 
     private int cadence;
     private int gear;
@@ -95,8 +106,10 @@ public class Classes {
     public static void main(String... args) {
 
         Bicycle bike = new Bicycle(1, 2, 3);
-        // System.out.println(bike.speed);
+        Bicycle.NestedWheels wheels = bike.new NestedWheels(); // De esta manera instanciamos una nested class
+        // System.out.println(bike.speed); <-- Error
         System.out.println("Id of the first bike: " + bike.getId());
+        System.out.println("Wheels number: " + wheels.getNumberWheels());
 
         MountainBike mtbike = new MountainBike(2, 1, 0, -3);
         // System.out.println(mtbike.speed); <-- Error
