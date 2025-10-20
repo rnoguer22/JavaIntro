@@ -7,12 +7,38 @@ class Bicycle {
     private int cadence;
     private int gear;
     private int speed;
+    private int id;
+    private static int numberOfBicycles = 0;
 
     // Definimos el constructor de la clase
-    public Bicycle(int startCadence, int startGear, int startSpeed) {
-        cadence = startCadence;
-        gear = startGear;
-        speed = startSpeed;
+    // Importante saber que podemos tener varios constructores, dependiendo del tipo de valor que se pase como argumento 
+    // al hacer una instancia, por ejemplo
+    public Bicycle(int cadence, int gear, int speed) {
+        this.cadence = cadence;
+        this.gear = gear;
+        this.speed = speed;
+        /* Incrementamos primero y luego asignamos el valor de numberOfBicycles a id
+           El orden del ++ puede variar, ya que si lo ponemos al final numberOfBicycles++, primero se asigna la 
+           variable y luego se incrementa, resultando en 0 la primera y 1 la segunda */
+        this.id = ++numberOfBicycles;
+    }
+
+    // Lo que haya dentro de un bloque static se ejecutara cuando se cargue la clase en memoria, antes de inicializar cualquier instancia
+    static {
+        System.out.println("Cargando configuracion inicial de " + Bicycle.class.getSimpleName());
+        // Esto se suele usar para configuraciones de la aplicacion (archivos, conexiones, etc.)
+        int maxNumberBicycles = 10;
+    }
+    // Se puede poner directamente sin static, y se cargara el bloque de codigo cada vez que instanciemos la clase, no unicamente una sola vez como con static
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public static int getNumberOfBicycles() {
+        return numberOfBicycles;
     }
 
     public int getCadence() {
@@ -50,10 +76,11 @@ class Bicycle {
 class MountainBike extends Bicycle {
 
     public int seatHeight;
+    public String fork;
 
-    public MountainBike(int startCadence, int startGear, int startSpeed, int startSeatHeight) {
-        super(startCadence, startGear, startSpeed);
-        seatHeight = startSeatHeight;
+    public MountainBike(int cadence, int gear, int speed, int seatHeight) {
+        super(cadence, gear, speed);
+        this.seatHeight = seatHeight;
     }
 
     public void setHeight(int newSeatHeight) {
@@ -69,10 +96,19 @@ public class Classes {
 
         Bicycle bike = new Bicycle(1, 2, 3);
         // System.out.println(bike.speed);
-        System.out.println(bike.getSpeed());
+        System.out.println("Id of the first bike: " + bike.getId());
 
         MountainBike mtbike = new MountainBike(2, 1, 0, -3);
         // System.out.println(mtbike.speed); <-- Error
-        System.out.println(mtbike.getSpeed());
+        System.out.println("Id of the second bike: " + mtbike.getId());
+
+        // Tambien podemos acceder a un estado de una clase de esta manera
+        // Al crear este objeto MountainBike, el programa ya no tiene ninguna referencia ya que no le hemos asignado una variable, por lo que no podremos volver a acceder a el
+        int gear = new MountainBike(9, 8, 120, 0).getGear();
+        System.out.println(gear);
+
+        // Hay un proceso llamado garbagecollector, el cual hace java internamente cuando no se usa una determinada clase, 
+        // y la destruye para ahorrar recursos. No hay codigo, lo implementa java internamente.
+
     }
 }
