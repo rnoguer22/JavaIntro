@@ -38,7 +38,8 @@ class Point {
         this.y = y;
     }
 
-    public void move(int newX, int newY) {
+    // Con final decimos que este metodo no se puede modificar por ningun hijo
+    public final void move(int newX, int newY) {
         this.x = newX;
         this.y = newY;
     }
