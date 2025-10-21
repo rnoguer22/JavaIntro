@@ -1,5 +1,7 @@
 package learning_the_java_language.classes_and_objects;
 
+import learning_the_java_language.classes_and_objects.Calculator.IntegerMath;
+
 
 
 
@@ -101,6 +103,29 @@ class MountainBike extends Bicycle {
 
 
 
+// Clase calculadora para explicar las funciones lambda
+class Calculator {
+
+    interface IntegerMath {
+        int operation(int a, int b);
+    }
+
+    public int operateBinary(int a, int b, IntegerMath op) {
+        return op.operation(a, b);
+    }
+}
+
+
+
+// Enum se usa para definir constantes, como los dias de la semana, meses del año, norte este sur oeste, etc.
+enum Days {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+
+
+
+
+
 public class Classes {
     // Cuando no sepamos el numero de Strings de la lista, lo podemos poner tambien con .... Esto se conoce como varargs
     public static void main(String... args) {
@@ -122,6 +147,16 @@ public class Classes {
 
         // Hay un proceso llamado garbagecollector, el cual hace java internamente cuando no se usa una determinada clase, 
         // y la destruye para ahorrar recursos. No hay codigo, lo implementa java internamente.
+
+        // Ahora vamos a explicar las funciones lambda
+        Calculator myApp = new Calculator();
+        IntegerMath addition = (a, b) -> a + b; // Funcion lamda 1
+        IntegerMath substraction = (a, b) -> a - b; // Funcion lambda 2
+        System.out.println("2 + 3 = " + myApp.operateBinary(2, 3, addition));
+        System.out.println("2 - 3 = " + myApp.operateBinary(2, 3, substraction));
+
+        // Ejemplo de uso de los enum
+        System.out.println("Enum type is used for defining constants, like " + Days.FRIDAY);
 
     }
 }
